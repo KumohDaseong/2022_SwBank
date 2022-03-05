@@ -1,5 +1,5 @@
 class Product():
-    def __init__(self, product_url):
+    def __init__(self, product_url, img_url):
         self.url = product_url
         self.img_src = 0
         #self.settingProduct()
