@@ -14,3 +14,6 @@ class Product():
         self.manufacturer
         self.asin
         self.review = []
+        
+    def getURL(self):
+        return self.url

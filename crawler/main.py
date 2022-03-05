@@ -1,6 +1,8 @@
 from selenium import webdriver
 import time
 
+from crawler.Product import Product
+
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
@@ -13,12 +15,16 @@ driver.get(url)
 
 time.sleep(3)
 
-product_list = driver.find_elements_by_class_name("a-link-normal")
+product_all = driver.find_elements_by_class_name("a-link-normal")
+product_list = []
 url_list = []
 
-for temp_url in product_list:
-    url_list.append(temp_url.get_attribute("href"))
+for product_url in product_all:
+    product = Product(product_url.get_attribute("href"))
+    product_list.append(product)
 
-print(len(product_list))
+print(len(product_all))
 
+for i in url_list:
+    print(i)
 
