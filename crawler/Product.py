@@ -1,7 +1,7 @@
 class Product():
     def __init__(self, product_url):
         self.url = product_url
-        self.img_scr
+        self.img_src = 0
         #self.settingProduct()
     
     def settingProduct(self):
