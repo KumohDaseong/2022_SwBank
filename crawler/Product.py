@@ -4,13 +4,14 @@ class Product():
         self.img_src = 0
         #self.settingProduct()
     
-    def settingProduct(self):
+    def setInfo(self):
         self.name
         self.price
         self.review_rating
         self.standard
+        self.Weight
         self.item_model_number
-        self.date_First_Available
+        self.date_first_available
         self.manufacturer
         self.asin
         self.review = []
