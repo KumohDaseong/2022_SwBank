@@ -1,7 +1,11 @@
+from crawler.Review import Review
+
+
 class Product():
     def __init__(self, product_url, img_url):
         self.url = product_url
-        self.img_src = 0
+        self.img_src = "img/"
+        self.review_list = []
         #self.settingProduct()
     
     def setInfo(self):
@@ -18,3 +22,7 @@ class Product():
         
     def getURL(self):
         return self.url
+    
+    def add_review(self):
+        new_review = Review()
+        
