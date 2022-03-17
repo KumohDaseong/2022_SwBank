@@ -40,5 +40,16 @@ class ProductCrawler():
     #url에 접속해 페이지의 product들을 크롤링하는 함수입니다.
     def onePageCrawl(self, url):
         self.driver.get(url)
-        all_products_in_page = self.driver.find_elements_by_class_name("s-card-container.s-overflow-hidden.aok-relative.s-expand-height.s-include-content-margin.s-latency-cf-section.s-card-border")
+        all_products_in_page = self.driver.find_elements_by_class_name("s-card-container.s-overflow-hidden.aok-relative.s-expand-height.s-include-content-margin.s-latency-cf-section.s-card-border") #페이지에서 추출한 모든 product의 배열입니다.
+        
+        for each_product in all_products_in_page:
+            new_product = Product()
+            #product의 url을 추출해 냅니다
+            product_url = each_product.find_element_by_class_name("a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-normal")
+            product_detail_url = product_url.get_attribute("href")
+            new_product.setURL(product_detail_url)
+        
+        
+        
+        
         
