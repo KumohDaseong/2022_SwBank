@@ -6,6 +6,8 @@ class Product():
         self.url = product_url
         self.img_src = ""
         self.review_list = []
+        self.name = ""
+        self.key = ""
     
     def setInfo(self):
         self.name
