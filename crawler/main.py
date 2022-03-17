@@ -26,13 +26,15 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["enable-logging"])
 driver = webdriver.Chrome(options=options)
 
+product_list = []
+
 #url_id는 검색어를 뜻합니다
 url_id = input("input url_id : ")
 
 #max_page는 검색된 제품을 크롤링할 페이지 수를 뜻합니다.
 max_page = 5
 
-#i는 추출된 제품의 갯수이자, 임시적으로 추출한 제품의 image파일의 이름이기도 합니다.
+#i는 추출순서이자, 임시적으로 추출한 제품의 image파일의 이름이기도 합니다.
 i = 1
 
 #max_page만큼의 반복을 수행합니다
@@ -43,32 +45,27 @@ for index in range(max_page):
     
     #페이지 내에 존재하는 제품들을 추출한 배열입니다.
     all_products_in_page = driver.find_elements_by_class_name("s-card-container.s-overflow-hidden.aok-relative.s-expand-height.s-include-content-margin.s-latency-cf-section.s-card-border")
-    
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print(len(all_products_in_page))#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
 
     #각 product들을 등록합니다
     for selected_product in all_products_in_page:
+        new_product = Product()
         #product의 url을 추출해 냅니다
         product_url = selected_product.find_element_by_class_name("a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-normal")
         product_detail_url = product_url.get_attribute("href")
-        print(product_detail_url, "     ", i) #테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
+        new_product.setURL(product_detail_url)
         
         #product의 image를 추출해냅니다.
         img_element = selected_product.find_element_by_class_name("s-image")
         img_url = img_element.get_attribute("src")
         urllib.request.urlretrieve(img_url,  f'img/{i}.jpg')
         
+        driver.get(product_detail_url)
+        all_review_url = driver.find_elements_by_class_name("a-link-emphasis.a-text-bold")[0]
+        driver.get(all_review_url)
+        
+        all_reveiw = driver.find_elements_by_class_name("a-section.review.aok-relative")
+        
+        for review in all_reveiw:
+            
+        
         i += 1
-
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print()#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
-    print(len(all_products_in_page))#테스트를 위한 임시 코드입니다. 추후에 삭제가 필요합니다
