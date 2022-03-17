@@ -6,7 +6,7 @@ class Review():
     def __init__(self):
         self.writer = ""
         self.content = ""
-        self.star = 0.0
+        self.star = "" #HTML 요소는 문자열로 되어있다. 추후 숫자로 변환이 필요하다고 생각한다.
         self.date = ""
         self.recommend_number = 0
         

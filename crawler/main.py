@@ -49,6 +49,7 @@ for index in range(max_page):
     #각 product들을 등록합니다
     for selected_product in all_products_in_page:
         new_product = Product()
+        
         #product의 url을 추출해 냅니다
         product_url = selected_product.find_element_by_class_name("a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-normal")
         product_detail_url = product_url.get_attribute("href")

@@ -28,5 +28,5 @@ class Product():
     def getImgSrc(self):
         return self.img_src
     
-    def add_review(self):
-        new_review = Review()
+    def add_review(self, new_review : Review):
+        self.review_list.append(new_review)
