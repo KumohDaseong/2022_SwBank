@@ -7,28 +7,23 @@ class Product():
         self.img_src = ""
         self.review_list = []
         self.name = ""
-        self.key = ""
-    
-    def setInfo(self):
-        self.name
-        self.price
-        self.review_rating
-        self.standard
-        self.Weight
-        self.item_model_number
-        self.date_first_available
-        self.manufacturer
-        self.asin
-        self.review = []
+        self.key = 0
+
     
     def setURL(self, url):
         self.url = url
+        
+    def setKey(self, key):
+        self.key = key
         
     def setImgSrc(self, img_src):
         self.img_src = img_src
         
     def getURL(self):
         return self.url
+    
+    def getKey(self):
+        return self.key
     
     def getImgSrc(self):
         return self.img_src

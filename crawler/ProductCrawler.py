@@ -21,6 +21,8 @@ from Product import Product
 
 class ProductCrawler():
     def __init__(self):
+        self.product_key = 1 #프로그램 상에서 임시적으로 사용하는 product의 key값입니다. 추후 아마존네서 실제로 사용하는 SIC로 변경할 예정입니다.
+        
         options = webdriver.ChromeOptions()
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
         self.driver = webdriver.Chrome(options=options)
@@ -44,10 +46,17 @@ class ProductCrawler():
         
         for each_product in all_products_in_page:
             new_product = Product()
+            
             #product의 url을 추출해 냅니다
             product_url = each_product.find_element_by_class_name("a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-normal")
             product_detail_url = product_url.get_attribute("href")
             new_product.setURL(product_detail_url)
+            
+            
+            #product의 image를 추출해냅니다.
+            img_element = each_product.find_element_by_class_name("s-image")
+            img_url = img_element.get_attribute("src")
+            urllib.request.urlretrieve(img_url,  f'img/{i}.jpg')
         
         
         
